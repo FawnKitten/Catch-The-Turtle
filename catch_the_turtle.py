@@ -58,7 +58,7 @@ class Game:
     def game_over(self):
         self.spot.hideturtle()
         self.score_writer.pu()
-        self.score_writer.goto(-150, 0)
+        self.score_writer.goto(-170, -20)
         self.score_writer.write(f"      Game over\nyour score was: {self.score}", \
                                 font=self.game_over_font)
 
