@@ -19,7 +19,7 @@ class Game:
         self.window.screensize(600, 600)
         self.objective_clicks    = 5
         self.times_clicked       = 0
-        self.timer               = 30
+        self.timer               = 5 # 30
         self.spot_attrs = {
             'size': 1,
             'color': "pink",
@@ -46,6 +46,12 @@ class Game:
         self.counter.pu()
         self.counter.goto(-350,300)
 
+        self.retry_turtle = t.Turtle()
+        self.retry_turtle.hideturtle()
+        self.retry_turtle.pu()
+        self.retry_turtle.goto(-170, -30)
+        self.retry_turtle.shape('circle')
+
     # moves turtle to random location
     def change_location(self):
         self.spot.pu()
@@ -58,9 +64,21 @@ class Game:
     def game_over(self):
         self.spot.hideturtle()
         self.score_writer.pu()
-        self.score_writer.goto(-170, -20)
+        self.score_writer.goto(-170, 20)
         self.score_writer.write(f"      Game over\nyour score was: {self.score}", \
                                 font=self.game_over_font)
+        self.retry_turtle.showturtle()
+        self.retry_turtle.write("click on the square to retry",
+                                font=(self.game_over_font[0], 30, self.game_over_font[2]))
+        self.retry_turtle.onclick(self.retry)
+
+    def retry(self, x, y):
+        self.spot.clear()
+        self.score_writer.clear()
+        self.retry_turtle.clear()
+        self.counter.clear()
+        self.retry_turtle.hideturtle()
+        self.run()
 
     def count_down(self):
         self.timer -= 1
