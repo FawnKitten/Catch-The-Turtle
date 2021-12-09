@@ -19,7 +19,7 @@ class Game:
         self.window.screensize(600, 600)
         self.objective_clicks    = 5
         self.times_clicked       = 0
-        self.timer               = 2 # 30
+        self.timer               = 30
         self.spot_attrs = {
             'size': 1,
             'color': "pink",
